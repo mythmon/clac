@@ -33,12 +33,27 @@ body {
 .screen .messages {
   align: center;
   position: absolute;
-  bottom: 0;
+  bottom: 3px;
+  font-size: 0.8em;
+}
+
+.screen .messages .error {
+  color: #f00;
+}
+
+.screen .overlay {
+  position: absolute;
+  bottom: 0px;
+}
+
+.screen .overlay span {
+  display: block;
+  height: 34px;
 }
 
 .buttons button {
-  width: calc((100% - 10px) / 4 - 5px);
-  height: 60px;
+  width: calc((100% - 10px) / 5 - 6px);
+  height: 50px;
   margin: 0 5px 0 0;
   margin-right: 5px;
   display: inline-block;
@@ -54,7 +69,7 @@ body {
 }
 
 .buttons button.wide {
-  width: calc((100% - 10px) / 2)
+  width: calc((100% - 10px) / 5 * 2 - 2px);
 }
 
 .buttons button:last-child {

@@ -69,6 +69,7 @@ define("app", function(require) {
 
 function flash(level, message) {
   var $msg = $('<span>' + message + '</span>')
+    .addClass(level)
     .appendTo('.screen .messages');
 
   setTimeout(function() {
@@ -117,6 +118,13 @@ Operators = {
   mul: safe_op(2, function(a, b) { return a * b; }),
   div: safe_op(2, function(a, b) { return a / b; }),
   neg: safe_op(1, function(a) { return -a; }, false),
+
+  sin: safe_op(1, function(a) { return Math.sin(a); }),
+  cos: safe_op(1, function(a) { return Math.cos(a); }),
+  tan: safe_op(1, function(a) { return Math.tan(a); }),
+
+  pow: safe_op(2, function(a, b) { return Math.pow(a, b); }),
+  inv: safe_op(1, function(a) { return 1 / a; }),
 
   drop: safe_op(1, function(a) { return undefined; }),
   swap: safe_op(2, function(a, b) { return [b, a]; }),
