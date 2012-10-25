@@ -15,12 +15,14 @@ define("app", function(require) {
   $('body').on('click', 'button', function() {
     var $this = $(this);
     var id = $this.prop('id');
-    console.log(id);
 
     if ($this.hasClass('number')) {
       var digit = parseFloat(id);
       if (Stack.progress) {
         var num = Stack.pop();
+        var negative = num < 0;
+        num = Math.abs(num);
+
         if (Stack.decimal) {
           num = num + '';
           if (num.indexOf('.') == -1) {
@@ -28,12 +30,14 @@ define("app", function(require) {
           }
           num += '' + digit;
           num = parseFloat(num);
-          Stack.push(num);
         } else {
           num *= 10;
           num += digit;
-          Stack.push(num);
         }
+        if (negative) {
+          num = -num;
+        }
+        Stack.push(num);
       } else {
         Stack.push(digit);
         Stack.progress = true;
@@ -44,7 +48,6 @@ define("app", function(require) {
       if (op === undefined) {
         flash('error', 'Undefined operator ' + id);
       }
-      console.log(op);
       op();
     }
     else if ($this.hasClass('action')) {
@@ -73,28 +76,37 @@ function flash(level, message) {
   }, 3000);
 }
 
-function safe_op(n, op) {
+function safe_op(n, op, stop_progress) {
+  if (stop_progress === undefined) {
+    stop_progress = true;
+  }
   return function() {
     if (Stack.data.length < n) {
       flash('error', 'Not enough parameters.');
+      return;
     } else {
       var args = [];
+      var v;
       for (var i = 0; i < n; i++) {
         // Insert in reverse order.
         args.splice(0, 0, Stack.pop());
       }
 
+      console.log(args);
+
       var ret = op.apply(this, args);
       if (ret instanceof Array) {
         for (var i = 0; i < ret.length; i++) {
-          Stack.push.apply(this, ret[i]);
+          Stack.push(ret[i]);
         }
       } else if (ret !== undefined) {
         Stack.push(ret);
       }
 
-      Stack.progress = false;
-      Stack.decimal = false;
+      if (stop_progress) {
+        Stack.progress = false;
+        Stack.decimal = false;
+      }
     }
   }
 }
@@ -104,10 +116,10 @@ Operators = {
   sub: safe_op(2, function(a, b) { return a - b; }),
   mul: safe_op(2, function(a, b) { return a * b; }),
   div: safe_op(2, function(a, b) { return a / b; }),
-  neg: safe_op(1, function(a) { return -a; }),
- 
+  neg: safe_op(1, function(a) { return -a; }, false),
+
   drop: safe_op(1, function(a) { return undefined; }),
-  swap: safe_op(1, function(a, b) { return [a, b]; }),
+  swap: safe_op(2, function(a, b) { return [b, a]; }),
 }
 
 Stack = {
