@@ -107,10 +107,11 @@ td { vertical-align: top; }
 body {
   background: #111;
   padding: 5px;
+  max-width: 640px;
 }
 .screen {
   height: 100px;
-  width: 290px;
+  width: calc(100% - 20px);
   background: #93ed7b;
   margin-bottom: 8px;
   padding: 10px;
@@ -132,11 +133,23 @@ body {
 .screen .messages {
   align: center;
   position: absolute;
-  bottom: 0;
+  bottom: 3px;
+  font-size: 0.8em;
+}
+.screen .messages .error {
+  color: #f00;
+}
+.screen .overlay {
+  position: absolute;
+  bottom: 0px;
+}
+.screen .overlay span {
+  display: block;
+  height: 34px;
 }
 .buttons button {
-  width: 70px;
-  height: 60px;
+  width: calc((100% - 10px) / 5 - 6px);
+  height: 50px;
   margin: 0 5px 0 0;
   margin-right: 5px;
   display: inline-block;
@@ -150,7 +163,7 @@ body {
   border-color: #555 #222 #222 #555;
 }
 .buttons button.wide {
-  width: 150px;
+  width: calc((100% - 10px) / 5 * 2 - 2px);
 }
 .buttons button:last-child {
   margin-right: 0;

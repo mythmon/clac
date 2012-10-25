@@ -25,40 +25,51 @@
     <!-- All JavaScript at the bottom, except this Modernizr build.
          Modernizr enables HTML5 elements & feature detects for optimal performance.
          Create your own custom Modernizr build: www.modernizr.com/download/ -->
-    <script src="js/lib/modernizr-2.5.3.min.js"></script>    
+    <script src="js/lib/modernizr-2.5.3.min.js"></script>
   </head>
   <body>
 
     <div class="screen" id="main-screen">
+      <div class="overlay">
+        <span>Z:</span>
+        <span>Y:</span>
+        <span>X:</span>
+      </div>
       <div class="stack"></div>
       <div class="messages"></div>
     </div>
 
     <div class="buttons">
       <div class="row">
-        <button class="action wide" id="enter">Enter</button>
-        <button class="operator" id="drop">Drop</button>
-        <button class="operator" id="swap">Swap</button>
+        <button class="operator" id="sin">sin</button>
+        <button class="operator" id="cos">cos</button>
+        <button class="operator" id="tan">tan</button>
+        <button class="operator" id="pow">y<sup>x</sup></button>
+        <button class="operator" id="inv">x<sup>-1</sup></button>
       </div><div class="row">
         <button class="number" id="7">7</button>
         <button class="number" id="8">8</button>
         <button class="number" id="9">9</button>
-        <button class="operator" id="div">&div;</button>
+        <button class="operator" id="drop">Drop</button>
+        <button class="operator" id="swap">Swap</button>
       </div><div class="row">
         <button class="number" id="4">4</button>
         <button class="number" id="5">5</button>
         <button class="number" id="6">6</button>
         <button class="operator" id="mul">x</button>
+        <button class="operator" id="div">&div;</button>
       </div><div class="row">
         <button class="number" id="1">1</button>
         <button class="number" id="2">2</button>
         <button class="number" id="3">3</button>
+        <button class="operator" id="add">+</button>
         <button class="operator" id="sub">-</button>
       </div><div class="row">
         <button class="number" id="0">0</button>
         <button class="action" id="decimal">.</button>
         <button class="operator" id="neg">+/-</button>
-        <button class="operator" id="add">+</button>
+        <button class="action wide" id="enter">Enter</button>
+      </div>
     </div>
 
     <script type="text/javascript"
