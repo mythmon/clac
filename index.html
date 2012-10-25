@@ -1,1 +1,68 @@
-Setting up pages...
+<!DOCTYPE html>
+<html manifest="manifest.appcache">
+  <head>
+    <meta charset="utf-8">
+
+    <title></title>
+    <meta name="description" content="A calculator that supports RPN.">
+
+    <!-- Mobile viewport optimized: h5bp.com/viewport -->
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+    <!-- Do not add any other CSS here, instead @import it in app.css.
+         It will be inlined when building. That way it will
+         automatically be minified. -->
+    <link rel="stylesheet" href="css/app.css">
+
+    <!-- If this is also installable in Chrome, provide the store link
+         (see the "Self-hosted apps" section below) -->
+    <!-- <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/itemID"> -->
+
+    <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+    <!-- All JavaScript at the bottom, except this Modernizr build.
+         Modernizr enables HTML5 elements & feature detects for optimal performance.
+         Create your own custom Modernizr build: www.modernizr.com/download/ -->
+    <script src="js/lib/modernizr-2.5.3.min.js"></script>    
+  </head>
+  <body>
+
+    <div class="screen" id="main-screen">
+      <div class="stack"></div>
+      <div class="messages"></div>
+    </div>
+
+    <div class="buttons">
+      <div class="row">
+        <button class="action wide" id="enter">Enter</button>
+        <button class="operator" id="drop">Drop</button>
+        <button class="operator" id="swap">Swap</button>
+      </div><div class="row">
+        <button class="number" id="7">7</button>
+        <button class="number" id="8">8</button>
+        <button class="number" id="9">9</button>
+        <button class="operator" id="div">&div;</button>
+      </div><div class="row">
+        <button class="number" id="4">4</button>
+        <button class="number" id="5">5</button>
+        <button class="number" id="6">6</button>
+        <button class="operator" id="mul">x</button>
+      </div><div class="row">
+        <button class="number" id="1">1</button>
+        <button class="number" id="2">2</button>
+        <button class="number" id="3">3</button>
+        <button class="operator" id="sub">-</button>
+      </div><div class="row">
+        <button class="number" id="0">0</button>
+        <button class="action" id="decimal">.</button>
+        <button class="operator" id="neg">+/-</button>
+        <button class="operator" id="add">+</button>
+    </div>
+
+    <script type="text/javascript"
+            data-main="js/app.js"
+            src="js/lib/require.js"></script>
+  </body>
+</html>
