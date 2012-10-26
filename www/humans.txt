@@ -1,21 +1,15 @@
 /* the humans responsible & colophon */
 /* humanstxt.org */
 
-
-/* TEAM */
-  <your title>: <your name>
-  Site:
-  Twitter:
-  Location:
+  Mike Cooper
 
 /* THANKS */
-  Names (& URL):
+
+  Mozilla
 
 /* SITE */
   Standards: HTML5, CSS3
   Components: Modernizr, jQuery, require.js
-  Software:
-
 
 
                                -o/-

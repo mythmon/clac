@@ -1,16 +1,15 @@
 {
   "version": "0.1",
   "name": "Clac",
-  "description": "Calculator that supports RPN.",
-  "launch_path": "/",
+  "description": "RPN Calculator",
+  "launch_path": "/clac/",
   "icons": {
-    "16": "/img/icons/mortar-16.png",
-    "48": "/img/icons/mortar-48.png",
-    "128": "/img/icons/mortar-128.png"
+    "16": "/img/icons/clac-16.png",
+    "48": "/img/icons/clac-48.png",
+    "128": "/img/icons/clac-128.png"
   },
   "developer": {
     "name": "Mike Cooper",
-    "url": "https://mythmon.github.com/clac"
   },
   "installs_allowed_from": ["*"],
   "appcache_path": "/cache.manifest",
