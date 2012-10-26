@@ -9,7 +9,7 @@
     "128": "/img/icons/clac-128.png"
   },
   "developer": {
-    "name": "Mike Cooper",
+    "name": "Mike Cooper"
   },
   "installs_allowed_from": ["*"],
   "appcache_path": "/cache.manifest",
