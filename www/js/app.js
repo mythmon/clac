@@ -12,58 +12,82 @@ define("app", function(require) {
 
   var $ = require('jquery');
 
-  $('body').on('click', 'button', function() {
-    var $this = $(this);
-    var id = $this.prop('id');
+  var install = require('install');
 
-    if ($this.hasClass('number')) {
-      var digit = parseFloat(id);
-      if (Stack.progress) {
-        var num = Stack.pop();
-        var negative = num < 0;
-        num = Math.abs(num);
-
-        if (Stack.decimal) {
-          num = num + '';
-          if (num.indexOf('.') == -1) {
-            num += '.';
+  function updateInstallButton() {
+      $(function() {
+          var btn = $('#install');
+          if(install.state == 'uninstalled') {
+              btn.show();
           }
-          num += '' + digit;
-          num = parseFloat(num);
+          else if(install.state == 'installed' || install.state == 'unsupported') {
+              btn.hide();
+          }
+      });
+  }
+
+  install.on('change', updateInstallButton);
+
+  install.on('error', function(e, err) {
+      console.log(err.toString());
+  });
+
+  $(function() {
+    $('#install').click(install);
+
+    $('body').on('click', 'button', function() {
+      var $this = $(this);
+      var id = $this.prop('id');
+
+      if ($this.hasClass('number')) {
+        var digit = parseFloat(id);
+        if (Stack.progress) {
+          var num = Stack.pop();
+          var negative = num < 0;
+          num = Math.abs(num);
+
+          if (Stack.decimal) {
+            num = num + '';
+            if (num.indexOf('.') == -1) {
+              num += '.';
+            }
+            num += '' + digit;
+            num = parseFloat(num);
+          } else {
+            num *= 10;
+            num += digit;
+          }
+          if (negative) {
+            num = -num;
+          }
+          Stack.push(num);
         } else {
-          num *= 10;
-          num += digit;
+          Stack.push(digit);
+          Stack.progress = true;
         }
-        if (negative) {
-          num = -num;
+      }
+      else if ($this.hasClass('operator')) {
+        var op = Operators[id];
+        if (op === undefined) {
+          flash('error', 'Undefined operator ' + id);
         }
-        Stack.push(num);
+        op();
+      }
+      else if ($this.hasClass('action')) {
+        if (id == 'enter') {
+          Stack.decimal = false;
+          Stack.progress = true;
+          Stack.push(0);
+        }
+        else if (id == 'decimal') {
+          Stack.decimal = true;
+          Stack.progress = true;
+          Stack.redraw();
+        }
       } else {
-        Stack.push(digit);
-        Stack.progress = true;
+        flash('error', 'wat');
       }
-    }
-    else if ($this.hasClass('operator')) {
-      var op = Operators[id];
-      if (op === undefined) {
-        flash('error', 'Undefined operator ' + id);
-      }
-      op();
-    }
-    else if ($this.hasClass('action')) {
-      if (id == 'enter') {
-        Stack.decimal = false;
-        Stack.progress = true;
-        Stack.push(0);
-      }
-      else if (id == 'decimal') {
-        Stack.decimal = true;
-        Stack.progress = true;
-        Stack.redraw();
-      }
-    } else {
-      flash('error', 'wat');
-    }
+    });
   });
 });
 
