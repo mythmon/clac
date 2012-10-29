@@ -11,4 +11,5 @@ css/defaults.css
 js/app.js
 ----------------
 js/lib/jquery.js
+js/lib/install.js
 js/app.js
