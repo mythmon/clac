@@ -35,7 +35,7 @@ define("app", function(require) {
   $(function() {
     $('#install').click(install);
 
-    $('body').on('click', 'button', function() {
+    $('body').on('click touch', 'button', function() {
       var $this = $(this);
       var id = $this.prop('id');
 
